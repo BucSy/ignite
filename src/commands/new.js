@@ -107,7 +107,9 @@ async function command (context) {
   let boilerplateName = parameters.options.boilerplate || parameters.options.b
 
   // If the name includes a file separator, it's probably a path. Expand it so it's the full real path here.
-  if ((boilerplateName || '').includes(path.sep)) {
+  if ((boilerplateName || '').includes('git+')) {
+    print.info(boilerplateName.split('+').pop());
+  } else if ((boilerplateName || '').includes(path.sep)) {
     boilerplateName = filesystem.path(boilerplateName)
   }
   const andross = 'Andross (React Navigation, Redux, & Redux Saga'
