@@ -111,6 +111,8 @@ async function command (context) {
   // if the b paramater include git+ that means it is a git repo and first clone it and than add it to ignite.
   // else it's a dir name or something else(?)
   if ((boilerplateName || '').includes('git+')) {
+    print.newline();
+    print.info('📦 We clone the repo...');
     let gitURL = boilerplateName.split('+').pop();
     await exec('git clone ' + gitURL);
     let lastUrlTag = gitURL.split('/').pop();
