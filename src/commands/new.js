@@ -112,6 +112,8 @@ async function command (context) {
   if ((boilerplateName || '').includes('git+')) {
     let gitURL = boilerplateName.split('+').pop();
     await exec('git clone ' + gitURL);
+    let lastUrlTag = gitURL.split('/').pop();
+    boilerplateName = filesystem.path(lastUrlTag.replace('.git', ''));
   } else if ((boilerplateName || '').includes(path.sep)) {
     boilerplateName = filesystem.path(boilerplateName)
   }
