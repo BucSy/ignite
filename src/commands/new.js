@@ -108,7 +108,8 @@ async function command (context) {
   // grab the right boilerplate
   let boilerplateName = parameters.options.boilerplate || parameters.options.b
 
-  // If the name includes a file separator, it's probably a path. Expand it so it's the full real path here.
+  // if the b paramater include git+ that means it is a git repo and first clone it and than add it to ignite.
+  // else it's a dir name or something else(?)
   if ((boilerplateName || '').includes('git+')) {
     let gitURL = boilerplateName.split('+').pop();
     await exec('git clone ' + gitURL);
